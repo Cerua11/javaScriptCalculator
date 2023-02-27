@@ -6,7 +6,7 @@ const mathSign = document.querySelector(".mathSign");
 
 const numbersButton = document.querySelectorAll(".number");
 
-const operatorsButtons = document.querySelectorAll(".operators");
+const operatorsButtons = document.querySelectorAll(".operator");
 
 const equalsButton = document.querySelector(".equals");
 
@@ -20,13 +20,33 @@ const historyBtn = document.querySelector(".history-btn");
 
 let result = '';
 
-function displayNumbers(){
-    
+function displayNumbers (){
+        if(this.textContent === "." && currentNumber.innerHTML.includes(".")) return;
+        if(this.textContent === "." && currentNumber.innerHTML === ""){
+            return currentNumber.innerHTML = "0.";
+        }
+        
+
+        currentNumber.innerHTML += this.textContent;
 }
 
-function operate(){
+function operate (){
+    if(currentNumber.innerHTML === "" && this.textContent ==="-"){
+        currentNumber.innerHTML = "-";
+        return;
+    }
 
-}
+     else if(currentNumber.innerHTML === ""){
+            return;
+     }
+
+     if(mathSign.innerHTML !== ""){
+        showResult();
+     }
+     previousNumber.innerHTML = currentNumber.innerHTML;
+     mathSign.innerHTML = this.textContent;
+     currentNumber.innerHTML ="";
+}   
 
 function showResult(){
 
